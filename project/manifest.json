@@ -1,0 +1,16 @@
+{
+  "name": "Hagamos Números - Dividí gastos fácil",
+  "short_name": "Hagamos Números",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#22c55e",
+  "icons": [
+    {
+      "src": "/icono-hagamos-numeros_cuad.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
