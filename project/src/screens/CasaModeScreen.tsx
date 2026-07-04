@@ -29,7 +29,7 @@ export function CasaModeScreen({
   userName,
   onToggleDarkMode,
 }: CasaModeScreenProps) {
-  const [name, setName] = useState('Casa');
+  const [name, setName] = useState('');
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [calculations, setCalculations] = useState<CalculationResult | null>(null);
   const [currentJuntadaId, setCurrentJuntadaId] = useState<string | null>(juntadaId || null);
