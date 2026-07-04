@@ -36,7 +36,7 @@ export function BarModeScreen({
   darkMode,
   onToggleDarkMode,
 }: BarModeScreenProps) {
-  const [name, setName] = useState('Bar');
+  const [name, setName] = useState('');
   const [total, setTotal] = useState(0);
   const [tipPercentage, setTipPercentage] = useState(0);
   const [isEditingTotal, setIsEditingTotal] = useState(false);
