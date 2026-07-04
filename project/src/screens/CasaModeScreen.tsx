@@ -201,11 +201,38 @@ useEffect(() => {
         return null;
       }
 
-      // Solo actualizamos el juntada_id en memoria, sin insertar el participante todavía.
-      // saveParticipant lo insertará cuando el usuario pierda el foco del input.
-      setParticipants(prev =>
-        prev.map(p => p.id === '' ? { ...p, juntada_id: juntada.id } : p)
-      );
+      // Guardamos de una el participante inicial (vos), para que no
+      // desaparezca cuando se recargue la lista por el realtime al
+      // agregar a otra persona.
+      const yo = participants.find(p => p.id === '');
+      if (yo) {
+        const { data: partData } = await supabase
+          .from('participants')
+          .insert({
+            juntada_id: juntada.id,
+            name: yo.name,
+            alias_bancario: yo.alias_bancario,
+            pago_efectivo: yo.pago_efectivo,
+            is_recaudador: false,
+            amount_spent: yo.amount_spent,
+            extra_amount: 0,
+            device_id: yo.name === userName ? getDeviceId() : null,
+          })
+          .select()
+          .maybeSingle();
+
+        setParticipants(prev =>
+          prev.map(p =>
+            p.id === ''
+              ? { ...p, id: partData?.id || '', juntada_id: juntada.id }
+              : p
+          )
+        );
+      } else {
+        setParticipants(prev =>
+          prev.map(p => p.id === '' ? { ...p, juntada_id: juntada.id } : p)
+        );
+      }
 
       setCurrentJuntadaId(juntada.id);
       return juntada.id;
