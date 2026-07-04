@@ -3,6 +3,7 @@ import { Beer, Home, Trash2 } from 'lucide-react';
 import { Header } from '../components/Header';
 import { supabase, JuntadaWithParticipants } from '../lib/supabase';
 import { formatCurrency, formatDate } from '../utils/calculations';
+import { getDeviceId } from '../utils/deviceId';
 
 interface HomeScreenProps {
   onNewJuntada: (mode: 'bar' | 'casa') => void;
@@ -22,7 +23,7 @@ export function HomeScreen({ onNewJuntada, onViewJuntada, darkMode, onToggleDark
     const { data, error } = await supabase
       .from('participants')
       .select('juntadas(*, participants(*))')
-      .eq('name', userName)
+      .eq('device_id', getDeviceId())
       .order('created_at', { ascending: false });
 
     if (error) throw error;
