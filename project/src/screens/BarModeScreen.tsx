@@ -4,6 +4,7 @@ import { Header } from '../components/Header';
 import { supabase, Participant } from '../lib/supabase';
 import { formatCurrency, calculateBarMode, CalculationResult } from '../utils/calculations';
 import { PullToRefresh } from '../components/PullToRefresh';
+import { getDeviceId } from '../utils/deviceId';
 
 function getNativeQrUrl(text: string) {
   return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}&ecc=M&margin=0`;
@@ -96,6 +97,7 @@ export function BarModeScreen({
           pago_efectivo: false,
           amount_spent: 0,
           extra_amount: 0,
+          device_id: getDeviceId(),
         });
         // Recargar participantes sin tocar el resto del estado
         const { data: parts } = await supabase
@@ -186,6 +188,7 @@ export function BarModeScreen({
             is_recaudador: true,
             amount_spent: 0,
             extra_amount: recaudador.extra_amount,
+            device_id: getDeviceId(),
           })
           .select()
           .maybeSingle();
@@ -356,6 +359,7 @@ useEffect(() => {
             is_recaudador: participant.is_recaudador,
             amount_spent: 0,
             extra_amount: participant.extra_amount,
+            device_id: participant.name === userName ? getDeviceId() : null,
           })
           .select()
           .maybeSingle();
