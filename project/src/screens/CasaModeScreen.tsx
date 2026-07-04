@@ -4,6 +4,7 @@ import { Header } from '../components/Header';
 import { supabase, Participant } from '../lib/supabase';
 import { formatCurrency, calculateCasaMode, CalculationResult } from '../utils/calculations';
 import { PullToRefresh } from '../components/PullToRefresh';
+import { getDeviceId } from '../utils/deviceId';
 
 function getNativeQrUrl(text: string) {
   return `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}&ecc=M&margin=0`;
@@ -85,6 +86,7 @@ export function CasaModeScreen({
           is_recaudador: false,
           amount_spent: 0,
           extra_amount: 0,
+          device_id: getDeviceId(),
         });
         // Recargar solo participantes sin tocar el resto del estado
         const { data: parts } = await supabase
@@ -305,6 +307,7 @@ useEffect(() => {
             is_recaudador: false,
             amount_spent: participant.amount_spent,
             extra_amount: 0,
+            device_id: participant.name === userName ? getDeviceId() : null,
           })
           .select()
           .maybeSingle();
