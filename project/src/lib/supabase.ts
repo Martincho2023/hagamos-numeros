@@ -26,6 +26,7 @@ export type Participant = {
   amount_spent: number;
   extra_amount: number;
   created_at: string;
+  device_id?: string | null;
 };
 
 export type JuntadaWithParticipants = Juntada & {
