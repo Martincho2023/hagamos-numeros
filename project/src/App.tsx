@@ -81,23 +81,19 @@ function App() {
   }
 
   return (
-    //<PullToRefresh>
-    //<PullToRefresh onRefresh={() => setShowSplash(true)}>
-    <PullToRefresh onRefresh={
-      currentScreen === 'home' 
-        ? () => setShowSplash(true)
-        : undefined
-    }>
+    <>
       <WelcomeModal onNameSaved={(name) => setUserName(name)} />
 
       {currentScreen === 'home' && (
-        <HomeScreen
-          onNewJuntada={handleNewJuntada}
-          onViewJuntada={handleViewJuntada}
-          darkMode={darkMode}
-          onToggleDarkMode={toggleDarkMode}
-          userName={userName}
-        />
+        <PullToRefresh onRefresh={() => window.location.reload()}>
+          <HomeScreen
+            onNewJuntada={handleNewJuntada}
+            onViewJuntada={handleViewJuntada}
+            darkMode={darkMode}
+            onToggleDarkMode={toggleDarkMode}
+            userName={userName}
+          />
+        </PullToRefresh>
       )}
 
       {currentScreen === 'bar-mode' && (
@@ -119,7 +115,7 @@ function App() {
           onToggleDarkMode={toggleDarkMode}
         />
       )}
-     </PullToRefresh>
+    </>
   );
 }
 
