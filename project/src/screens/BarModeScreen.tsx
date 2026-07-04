@@ -458,7 +458,7 @@ const handleShowQr = async () => {
 
   return (
     //<div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors">
-    <PullToRefresh onRefresh={() => juntadaId && loadJuntada(juntadaId)}>
+    <PullToRefresh onRefresh={() => currentJuntadaId && loadJuntada(currentJuntadaId)}>
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors">
       <Header darkMode={darkMode} onToggleDarkMode={onToggleDarkMode} showBack onBack={onBack} />
 
