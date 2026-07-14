@@ -648,7 +648,7 @@ const handleShowQr = async () => {
               className="w-full bg-primary-500 hover:bg-primary-600 text-white rounded-xl py-3 flex items-center justify-center gap-2 font-medium transition-colors"
             >
               <Copy className="w-4 h-4" />
-              Copiar para WhatsApp
+              Copiar Resumen para WhatsApp
             </button>
 
             {aliasParaCopiar && (
@@ -688,7 +688,7 @@ const handleShowQr = async () => {
               className="flex-1 min-w-[140px] bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-full py-3 px-4 text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center justify-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
             >
               <QrCode className="w-4 h-4 text-purple-500" />
-              Código QR
+              Invitar por Código QR
             </button>
           </div>
 
